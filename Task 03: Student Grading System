@@ -1,0 +1,59 @@
+// Task 3: Student Grading System
+// CodSoft Internship
+// Domain Name - C++ Programming
+// Intern Name - Shivanshu Shekhar
+
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+struct Student {
+    string name;
+    float grade;
+};
+int main() {
+    vector<Student> students;
+    int total_students;
+
+    cout << "Enter the total number of students: ";
+    cin >> total_students;
+
+    // Input the student names and their corresponding grades.
+    for (int i = 0; i < total_students; ++i) {
+        Student student;
+        cout << "Enter the name of student: " << i + 1 << ": "<<endl;
+        cin >> student.name;
+        cout << "Enter his/her grade: " << i + 1 << ": "<<endl;
+        cin >> student.grade;
+        students.push_back(student);
+    }
+
+    // Calculating the average grade
+    float sum_of_Grades = 0.0;
+    for (const auto& student : students) {
+        sum_of_Grades += student.grade;
+    }
+    float average_grade = sum_of_Grades / total_students;
+
+    // Find the  highest and lowest grades of the student
+    float highest_grade = students[0].grade;
+    float lowest_grade = students[0].grade;
+    for (const auto& student : students) {
+        highest_grade = max(highest_grade, student.grade);
+        lowest_grade = min(lowest_grade, student.grade);
+    }
+
+    // printing the result of Grades
+    cout << "\nStudent's and their grades\n";
+    for (const auto& student : students) {
+        cout << student.name << ": " << student.grade << endl;
+    }
+
+    cout << "\n Average Grade: " << average_grade << endl;
+    cout << " Highest Grade: " << highest_grade << endl;
+    cout << " Lowest Grade: " << lowest_grade << endl;
+
+    return 0;
+}
